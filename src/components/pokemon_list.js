@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 
 
 export default class PokemonList extends React.Component {
@@ -8,19 +8,21 @@ export default class PokemonList extends React.Component {
     renderListItem(pokemon) {
         const {item} = pokemon;
 
-        return <View style={styles.containerListItem}>
+        return <TouchableOpacity onPress={ () => this.props.func_letsgo(item) }>
+                <View style={styles.containerListItem}>
                 <Text style={styles.textListItem}>{ item.name }</Text>
-            </View>
+                </View>
+            </TouchableOpacity>
     }
 
     render() {
         const { pokemons, func_loadPokemon } = this.props;
         return (
             <FlatList 
-                renderItem={ this.renderListItem }
+                renderItem={ this.renderListItem.bind(this) }
                 data={pokemons}
                 keyExtractor={(item, index) => `${index}`}
-                onEndReachedThreshold={ 0.1 }
+                onEndReachedThreshold={ 0.4 }
                 onEndReached={ func_loadPokemon }
                 />
         );

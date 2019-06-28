@@ -1,21 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
 export default function Header(props){
-    return <View style={styles.background}>
-            <Text style={styles.title}>{props.title}</Text>
-        </View>
+    return <Image style={styles.logo} source={ require('../../assets/pokedex.png') } />
 }
 
 const styles = StyleSheet.create({
-    background: {
-        alignItems: 'center',
-        backgroundColor: 'red',
-        paddingTop: 40,
-        paddingBottom: 5,
-    },
-    title: {
-        color: 'white',
-        fontSize: 25,
+    logo: {
+        height: 65,
+        resizeMode: 'contain',
+        alignSelf: 'center'
     }
 });
